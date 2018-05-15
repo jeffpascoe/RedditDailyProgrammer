@@ -1,8 +1,8 @@
 import string
+CONST_ALPH = list(string.ascii_lowercase)
 
-alph = list(string.ascii_lowercase)
 lst_of_shft = []
-shft_map = []
+shft_map = {}
 
 def shift_left(lst, n):
     if n < 0:
@@ -10,6 +10,7 @@ def shift_left(lst, n):
     if n > 0:
         lst.insert(0, lst.pop(-1))  # shift one place
         shift_left(lst, n-1)  # repeat
+    return lst
 
 def format_secret(secret, message):
 	formatted_secret = ''
@@ -21,20 +22,13 @@ def format_secret(secret, message):
 
 	return formatted_secret
 
-
-for letter in alph:
-	lst_of_shft.append(shift_left(alph, 1))
-
-index = 0
-for letter in alph:
-    shft_map[letter] = lst_of_shft[index]
-    index += 1
-
 def decrypt(secret, message):
 	secret = format_secret(secret, message)
 	for index in range(len(message)):
             x = secret[index]
             y = message[index]
 
+def main():
 
-decrypt('hello', 'encryptThis')
+
+main()
